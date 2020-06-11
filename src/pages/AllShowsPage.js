@@ -1,13 +1,25 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchShows } from '../actions/show.creators';
 
-const AllShowPage = () => {
+const AllShowPage = ({ apiIndex, fetchShows }) => {
+  useEffect(() => fetchShows(apiIndex), []);
   const pageName = 'Shows page';
-  useEffect(() => {
-    axios.get('http://api.tvmaze.com/shows?page=1').then(res => console.log(res));
-  }, []);
-
   return <h1>{pageName}</h1>;
 };
 
-export default AllShowPage;
+AllShowPage.propTypes = {
+  apiIndex: PropTypes.number.isRequired,
+  fetchShows: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  apiIndex: state.show.apiIndex,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchShows: apiIndex => dispatch(fetchShows(apiIndex)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllShowPage);
