@@ -4,6 +4,7 @@ import {
   SUCCESS_FETCHING_SHOWS,
   ERROR_FETCHING_SHOWS,
   SELECT_PAGE,
+  INCREASE_API_INDEX,
 } from './show.types';
 
 const startFetchingShows = () => ({
@@ -27,6 +28,8 @@ const successFetchingShows = shows => ({
 const fetchShows = apiIndex => dispatch => {
   dispatch(startFetchingShows());
   const apiRequests = [];
+  console.log('api index:');
+  console.dir(apiIndex);
   for (let i = 1; i <= apiIndex; i += 1) {
     apiRequests.push(axios.get(`http://api.tvmaze.com/shows?page=${i}`));
   }
@@ -45,4 +48,13 @@ const selectPage = page => ({
   },
 });
 
-export { fetchShows, selectPage };
+const increaseApiIndex = () => ({
+  type: INCREASE_API_INDEX,
+});
+
+// prettier-ignore
+export {
+  fetchShows,
+  selectPage,
+  increaseApiIndex,
+};

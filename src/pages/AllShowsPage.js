@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pagination from '@material-ui/lab/Pagination';
+import Button from '@material-ui/core/Button';
 import useStyles from './AllShowsPage.styles';
 import ShowCard from '../components/showCard';
 
-const AllShowPage = ({ showsDisplayed, pageCount, onPageChange }) => {
+// prettier-ignore
+const AllShowPage = ({
+  showsDisplayed,
+  pageCount,
+  handlePageChange,
+  handleLoadMoreShows,
+  currentPage,
+}) => {
   const classes = useStyles();
+  const showMoreButton = currentPage === pageCount;
 
   return (
     <div className={classes.root}>
@@ -14,8 +23,16 @@ const AllShowPage = ({ showsDisplayed, pageCount, onPageChange }) => {
           <ShowCard key={show.id} show={show} />
         ))}
       </div>
-      <div className={classes.pagination}>
-        <Pagination count={pageCount} color="primary" onChange={onPageChange} />
+      <div className={classes.center}>
+        { showMoreButton
+          ? (
+            <Button variant="contained" color="primary" onClick={handleLoadMoreShows}>
+              load more shows
+            </Button>
+          ) : ''}
+      </div>
+      <div className={classes.center}>
+        <Pagination count={pageCount} color="primary" onChange={handlePageChange} />
       </div>
     </div>
   );
@@ -24,12 +41,15 @@ const AllShowPage = ({ showsDisplayed, pageCount, onPageChange }) => {
 AllShowPage.propTypes = {
   showsDisplayed: PropTypes.arrayOf(Object),
   pageCount: PropTypes.number,
-  onPageChange: PropTypes.func.isRequired,
+  handlePageChange: PropTypes.func.isRequired,
+  handleLoadMoreShows: PropTypes.func.isRequired,
+  currentPage: PropTypes.number,
 };
 
 AllShowPage.defaultProps = {
   showsDisplayed: [],
   pageCount: 0,
+  currentPage: 1,
 };
 
 export default AllShowPage;

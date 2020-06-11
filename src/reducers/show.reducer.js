@@ -3,6 +3,7 @@ import {
   SUCCESS_FETCHING_SHOWS,
   ERROR_FETCHING_SHOWS,
   SELECT_PAGE,
+  INCREASE_API_INDEX,
 } from '../actions/show.types';
 
 const INITIAL_STATE = {
@@ -48,6 +49,11 @@ const showReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
+      };
+    case INCREASE_API_INDEX:
+      return {
+        ...state,
+        apiIndex: state.apiIndex + 1,
       };
     default:
       return {

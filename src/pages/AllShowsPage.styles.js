@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-  pagination: {
+  center: {
     '& > *': {
       marginTop: theme.spacing(2),
     },
