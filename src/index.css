@@ -1,3 +1,9 @@
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  max-width: 1300px;
 }

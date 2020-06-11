@@ -23,7 +23,7 @@ const fetchShows = apiIndex => dispatch => {
   dispatch(startFetchingShows());
   axios
     .get(`http://api.tvmaze.com/shows?page=${apiIndex}`)
-    .then(res => dispatch(successFetchingShows(res)))
+    .then(res => dispatch(successFetchingShows(res.data)))
     .catch(err => dispatch(errorFetchingShows(err)));
 };
 

@@ -5,12 +5,14 @@ import NavBar from './NavBar';
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Route exact path="/">
-        <AllShowsPage />
-      </Route>
-    </Router>
+    <div className="app">
+      <Router>
+        <NavBar />
+        <Route exact path="/">
+          <AllShowsPage />
+        </Route>
+      </Router>
+    </div>
   );
 }
 
