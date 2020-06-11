@@ -1,16 +1,23 @@
-import { START_FETCHING_SHOWS, SUCCESS_FETCHING_SHOWS, ERROR_FETCHING_SHOWS } from '../actions/show.types';
+import {
+  START_FETCHING_SHOWS,
+  SUCCESS_FETCHING_SHOWS,
+  ERROR_FETCHING_SHOWS,
+  SELECT_PAGE,
+} from '../actions/show.types';
 
 const INITIAL_STATE = {
   showsList: [],
-  selectedShow: null,
+  currentPage: 1,
   apiIndex: 1,
+  dataLoading: true,
   errors: {
     loadingShowsError: null,
   },
-  dataLoading: true,
 };
 
 const showReducer = (state = INITIAL_STATE, action) => {
+  const { payload } = action;
+
   switch (action.type) {
     case START_FETCHING_SHOWS:
       return {
@@ -20,7 +27,7 @@ const showReducer = (state = INITIAL_STATE, action) => {
     case SUCCESS_FETCHING_SHOWS:
       return {
         ...state,
-        showsList: action.payload.shows,
+        showsList: payload.shows,
         dataLoading: false,
       };
     case ERROR_FETCHING_SHOWS:
@@ -28,8 +35,19 @@ const showReducer = (state = INITIAL_STATE, action) => {
         ...state,
         errors: {
           ...state.errors,
-          loadingShowsError: action.payload.error,
+          loadingShowsError: payload.error,
         },
+      };
+    case SELECT_PAGE:
+      if (payload.page <= Math.floor(state.showsList.length / 10) && payload.page >= 1) {
+        return {
+          ...state,
+          currentPage: payload.page,
+        };
+      }
+
+      return {
+        ...state,
       };
     default:
       return {

@@ -4,6 +4,11 @@ body {
   justify-content: center;
 }
 
+#root {
+  width: 100%;
+}
+
 .app {
   max-width: 1300px;
+  width: 100%;
 }

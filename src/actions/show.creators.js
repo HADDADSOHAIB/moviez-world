@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { START_FETCHING_SHOWS, SUCCESS_FETCHING_SHOWS, ERROR_FETCHING_SHOWS } from './show.types';
+import { START_FETCHING_SHOWS, SUCCESS_FETCHING_SHOWS, ERROR_FETCHING_SHOWS, SELECT_PAGE } from './show.types';
 
 const startFetchingShows = () => ({
   type: START_FETCHING_SHOWS,
@@ -27,4 +27,11 @@ const fetchShows = apiIndex => dispatch => {
     .catch(err => dispatch(errorFetchingShows(err)));
 };
 
-export { fetchShows };
+const selectPage = page => ({
+  type: SELECT_PAGE,
+  payload: {
+    page,
+  },
+});
+
+export { fetchShows, selectPage };
