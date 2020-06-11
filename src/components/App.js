@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AllShowsPage from '../pages/AllShowsPage';
 import NavBar from './NavBar';
+import AllShowsPageContainer from '../pages/AllShowsPage.container';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Router>
         <NavBar />
         <Route exact path="/">
-          <AllShowsPage />
+          <AllShowsPageContainer />
         </Route>
       </Router>
     </div>

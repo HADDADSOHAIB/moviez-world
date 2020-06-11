@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
 }
 
 #root {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .app {

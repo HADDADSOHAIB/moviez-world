@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { START_FETCHING_SHOWS, SUCCESS_FETCHING_SHOWS, ERROR_FETCHING_SHOWS, SELECT_PAGE } from './show.types';
+import {
+  START_FETCHING_SHOWS,
+  SUCCESS_FETCHING_SHOWS,
+  ERROR_FETCHING_SHOWS,
+  SELECT_PAGE,
+} from './show.types';
 
 const startFetchingShows = () => ({
   type: START_FETCHING_SHOWS,
@@ -21,9 +26,15 @@ const successFetchingShows = shows => ({
 
 const fetchShows = apiIndex => dispatch => {
   dispatch(startFetchingShows());
-  axios
-    .get(`http://api.tvmaze.com/shows?page=${apiIndex}`)
-    .then(res => dispatch(successFetchingShows(res.data)))
+  const apiRequests = [];
+  for (let i = 1; i <= apiIndex; i += 1) {
+    apiRequests.push(axios.get(`http://api.tvmaze.com/shows?page=${i}`));
+  }
+  Promise.all([...apiRequests])
+    .then(values => {
+      const shows = values.reduce((memo, item) => memo.concat(item.data), []);
+      dispatch(successFetchingShows(shows));
+    })
     .catch(err => dispatch(errorFetchingShows(err)));
 };
 
