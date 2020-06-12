@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchShows } from '../actions/show.creators';
+import { fetchShows, selectPage } from '../actions/show.creators';
 import { setSearch, clearFilter, setSechdule } from '../actions/filter.creators';
 import NavBar from './NavBar';
 
@@ -11,6 +11,7 @@ const NavBarContainer = ({
   fetchShows,
   clearFilter,
   setSechdule,
+  selectPage,
 }) => {
   const [search, setSearchLocally] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,6 +24,7 @@ const NavBarContainer = ({
     if (e.keyCode === 13) {
       clearFilter();
       setSearchInStore(search);
+      selectPage(1);
       fetchShows({ search });
       setSearchLocally('');
     }
@@ -32,6 +34,7 @@ const NavBarContainer = ({
     clearFilter();
     const sechdule = { date: selectedDate, country: selectedCountry };
     setSechdule(sechdule);
+    selectPage(1);
     fetchShows({ sechdule });
   };
 
@@ -54,6 +57,7 @@ NavBarContainer.propTypes = {
   setSearchInStore: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
   setSechdule: PropTypes.func.isRequired,
+  selectPage: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -61,6 +65,7 @@ const mapDispatchToProps = dispatch => ({
   setSearchInStore: search => dispatch(setSearch(search)),
   clearFilter: () => dispatch(clearFilter()),
   setSechdule: sechdule => dispatch(setSechdule(sechdule)),
+  selectPage: page => dispatch(selectPage(page)),
 });
 
 export default connect(null, mapDispatchToProps)(NavBarContainer);

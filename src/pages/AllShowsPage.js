@@ -24,7 +24,7 @@ const AllShowPage = ({
       <CurrentFilter />
       <div className={classes.shows}>
         {showsDisplayed.map(show => (
-          <ShowCard key={show.id} show={show} />
+          <ShowCard show={show} key={show.id} />
         ))}
       </div>
       <div className={classes.center}>
@@ -36,7 +36,7 @@ const AllShowPage = ({
           ) : ''}
       </div>
       <div className={classes.center}>
-        <Pagination count={pageCount} color="primary" onChange={handlePageChange} />
+        <Pagination count={pageCount} page={currentPage} color="primary" onChange={handlePageChange} />
       </div>
     </div>
   );
