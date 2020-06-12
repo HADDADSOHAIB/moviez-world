@@ -30,6 +30,7 @@ const showReducer = (state = INITIAL_STATE, action) => {
         ...state,
         showsList: payload.shows,
         dataLoading: false,
+        currentPage: 1,
       };
     case ERROR_FETCHING_SHOWS:
       return {
