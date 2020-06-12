@@ -9,6 +9,11 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
@@ -22,6 +27,8 @@ const NavBar = ({
   handleSearchQuery,
   selectedDate,
   handleDateChange,
+  handleCountryChange,
+  selectedCountry,
 }) => {
   const classes = useStyles();
   return (
@@ -63,6 +70,11 @@ const NavBar = ({
             </div>
           </div>
           <div className={classes.sechdule}>
+            <div className={classes.airedSearch}>
+              <Tooltip title="Search shows by air date and by country" placement="bottom">
+                <Button variant="contained" color="secondary">Search</Button>
+              </Tooltip>
+            </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="center" alignItems="center">
                 <KeyboardDatePicker
@@ -71,15 +83,25 @@ const NavBar = ({
                   variant="inline"
                   format="MM/dd/yyyy"
                   margin="normal"
-                  id="date-picker-inline"
                   value={selectedDate}
                   onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
                 />
               </Grid>
             </MuiPickersUtilsProvider>
+            <div className={classes.country}>
+              <FormControl>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                >
+                  <MenuItem value="US">US</MenuItem>
+                  <MenuItem value="GB">UK</MenuItem>
+                  <MenuItem value="FR">France</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
@@ -92,7 +114,9 @@ NavBar.propTypes = {
   search: PropTypes.string.isRequired,
   handleSearchQuery: PropTypes.func.isRequired,
   handleDateChange: PropTypes.func.isRequired,
-  selectedDate: PropTypes.string.isRequired,
+  selectedDate: PropTypes.objectOf(Object).isRequired,
+  handleCountryChange: PropTypes.func.isRequired,
+  selectedCountry: PropTypes.string.isRequired,
 };
 
 export default NavBar;

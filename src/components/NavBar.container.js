@@ -8,12 +8,10 @@ import NavBar from './NavBar';
 const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
   const [search, setSearchLocally] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedCountry, setCountry] = useState('US');
 
-  const handleDateChange = date => {
-    setSelectedDate(date);
-    console.log(date);
-  };
-
+  const handleCountryChange = event => setCountry(event.target.value);
+  const handleDateChange = date => setSelectedDate(date);
   const handleSearchChange = e => setSearchLocally(e.target.value);
   const handleSearchQuery = e => {
     if (e.keyCode === 13) {
@@ -30,6 +28,8 @@ const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
       handleSearchQuery={handleSearchQuery}
       handleDateChange={handleDateChange}
       selectedDate={selectedDate}
+      handleCountryChange={handleCountryChange}
+      selectedCountry={selectedCountry}
     />
   );
 };

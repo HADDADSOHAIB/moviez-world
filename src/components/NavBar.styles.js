@@ -66,6 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
   sechdule: {
     marginLeft: 'auto',
+    display: 'flex',
   },
   date: {
     width: '140px',
@@ -78,6 +79,27 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       color: '#eee',
     },
+  },
+  country: {
+    marginLeft: '10px',
+    marginTop: '7px',
+    display: 'flex',
+    alignItems: 'center',
+    '& .MuiSelect-select.MuiSelect-select': {
+      color: '#eee',
+    },
+    '& .MuiSelect-icon': {
+      color: 'rgba(255, 255, 255, 1)',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottom: '1px solid rgba(255, 255, 255, 1)',
+    },
+  },
+  airedSearch: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: '5px',
   },
 }));
 
