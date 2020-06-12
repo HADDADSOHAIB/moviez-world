@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchShows } from '../actions/show.creators';
-import { setSearch } from '../actions/filter.creators';
+import { setSearch, clearFilter, setSechdule } from '../actions/filter.creators';
 import NavBar from './NavBar';
 
-const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
+// prettier-ignore
+const NavBarContainer = ({
+  setSearchInStore,
+  fetchShows,
+  clearFilter,
+  setSechdule,
+}) => {
   const [search, setSearchLocally] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedCountry, setCountry] = useState('US');
@@ -15,10 +21,18 @@ const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
   const handleSearchChange = e => setSearchLocally(e.target.value);
   const handleSearchQuery = e => {
     if (e.keyCode === 13) {
+      clearFilter();
       setSearchInStore(search);
       fetchShows({ search });
       setSearchLocally('');
     }
+  };
+
+  const handleSearchSechdule = () => {
+    clearFilter();
+    const sechdule = { date: selectedDate, country: selectedCountry };
+    setSechdule(sechdule);
+    fetchShows({ sechdule });
   };
 
   return (
@@ -30,6 +44,7 @@ const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
       selectedDate={selectedDate}
       handleCountryChange={handleCountryChange}
       selectedCountry={selectedCountry}
+      handleSearchSechdule={handleSearchSechdule}
     />
   );
 };
@@ -37,11 +52,15 @@ const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
 NavBarContainer.propTypes = {
   fetchShows: PropTypes.func.isRequired,
   setSearchInStore: PropTypes.func.isRequired,
+  clearFilter: PropTypes.func.isRequired,
+  setSechdule: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchShows: options => dispatch(fetchShows(1, options)),
   setSearchInStore: search => dispatch(setSearch(search)),
+  clearFilter: () => dispatch(clearFilter()),
+  setSechdule: sechdule => dispatch(setSechdule(sechdule)),
 });
 
 export default connect(null, mapDispatchToProps)(NavBarContainer);

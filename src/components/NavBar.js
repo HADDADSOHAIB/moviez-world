@@ -29,6 +29,7 @@ const NavBar = ({
   handleDateChange,
   handleCountryChange,
   selectedCountry,
+  handleSearchSechdule,
 }) => {
   const classes = useStyles();
   return (
@@ -72,7 +73,7 @@ const NavBar = ({
           <div className={classes.sechdule}>
             <div className={classes.airedSearch}>
               <Tooltip title="Search shows by air date and by country" placement="bottom">
-                <Button variant="contained" color="secondary">Search</Button>
+                <Button variant="contained" color="secondary" onClick={handleSearchSechdule}>Search</Button>
               </Tooltip>
             </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -117,6 +118,7 @@ NavBar.propTypes = {
   selectedDate: PropTypes.objectOf(Object).isRequired,
   handleCountryChange: PropTypes.func.isRequired,
   selectedCountry: PropTypes.string.isRequired,
+  handleSearchSechdule: PropTypes.func.isRequired,
 };
 
 export default NavBar;

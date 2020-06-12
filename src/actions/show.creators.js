@@ -6,6 +6,7 @@ import {
   SELECT_PAGE,
   INCREASE_API_INDEX,
 } from './show.types';
+import onlyUniques from '../utils/onlyUniques';
 
 const startFetchingShows = () => ({
   type: START_FETCHING_SHOWS,
@@ -32,7 +33,16 @@ const fetchSearchShows = (dispatch, search) => {
     .catch(err => dispatch(errorFetchingShows(err)));
 };
 
-const fetchSchduleShows = () => {};
+const fetchSchduleShows = (dispatch, sechdule) => {
+  axios
+    .get(
+      ` http://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
+        sechdule.date.toISOString().split('T')[0]
+      }`,
+    )
+    .then(res => dispatch(successFetchingShows(onlyUniques(res.data.map(el => el.show)))))
+    .catch(err => dispatch(errorFetchingShows(err)));
+};
 
 const fetchAllShows = (dispatch, apiIndex) => {
   const apiRequests = [];
@@ -54,7 +64,7 @@ const fetchShows = (apiIndex, options) => dispatch => {
   if (search) {
     fetchSearchShows(dispatch, search);
   } else if (sechdule) {
-    fetchSchduleShows();
+    fetchSchduleShows(dispatch, sechdule);
   } else {
     fetchAllShows(dispatch, apiIndex);
   }

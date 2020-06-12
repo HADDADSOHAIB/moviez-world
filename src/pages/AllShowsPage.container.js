@@ -25,7 +25,7 @@ const AllShowPageContainer = ({
   const handlePageChange = (event, value) => selectPage(value);
   const handleLoadMoreShows = () => {
     increaseApiIndex();
-    fetchShows(apiIndex + 1);
+    fetchShows(apiIndex + 1, {});
   };
 
   return (

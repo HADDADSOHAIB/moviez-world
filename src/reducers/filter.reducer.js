@@ -20,6 +20,11 @@ const showReducer = (state = INITIAL_STATE, action) => {
         ...state,
         search: payload.search,
       };
+    case SET_SECHDULE:
+      return {
+        ...state,
+        sechdule: payload.sechdule,
+      };
     default:
       return {
         ...state,

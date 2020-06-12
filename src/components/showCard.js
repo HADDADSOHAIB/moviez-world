@@ -11,11 +11,11 @@ import textPreview from '../utils/textPreview';
 
 const ShowCard = ({ show }) => {
   const classes = useStyles();
-
+  const image = show.image ? show.image.medium : '/default.jpg';
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={show.image.medium} title="Show" />
+        <CardMedia className={classes.media} image={image} title="Show" />
         <CardContent>
           <Typography gutterBottom align="center" variant="h5" component="h2">
             {show.name}

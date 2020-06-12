@@ -18,16 +18,14 @@ const CurrentFilter = ({
 
   const handleDelete = () => {
     clearFilter();
-    const newSearch = '';
-    const newSechdule = {};
-    fetchShows(apiIndex, { newSearch, newSechdule });
+    fetchShows(apiIndex, { search: null, sechdule: null });
   };
 
   let message = '';
   if (search) {
     message = `Search for: ${search}`;
   } else if (sechdule && sechdule.date && sechdule.country) {
-    message = `Shows aired on ${sechdule.date}, in the ${sechdule.country}`;
+    message = `Shows aired on ${sechdule.date.toISOString().split('T')[0]}, in the ${sechdule.country}`;
   }
 
   return (

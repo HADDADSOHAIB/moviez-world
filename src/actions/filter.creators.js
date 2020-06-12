@@ -11,4 +11,11 @@ const setSearch = search => ({
   },
 });
 
-export { clearFilter, setSearch };
+const setSechdule = sechdule => ({
+  type: SET_SECHDULE,
+  payload: {
+    sechdule,
+  },
+});
+
+export { clearFilter, setSearch, setSechdule };
