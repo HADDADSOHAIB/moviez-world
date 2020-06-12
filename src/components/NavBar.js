@@ -9,9 +9,20 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import useStyles from './NavBar.styles';
 
-const NavBar = ({ handleSearchChange, search, handleSearchQuery }) => {
+// prettier-ignore
+const NavBar = ({
+  handleSearchChange,
+  search,
+  handleSearchQuery,
+  selectedDate,
+  handleDateChange,
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -51,6 +62,25 @@ const NavBar = ({ handleSearchChange, search, handleSearchQuery }) => {
               />
             </div>
           </div>
+          <div className={classes.sechdule}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="center" alignItems="center">
+                <KeyboardDatePicker
+                  className={classes.date}
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  id="date-picker-inline"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
@@ -61,6 +91,8 @@ NavBar.propTypes = {
   handleSearchChange: PropTypes.func.isRequired,
   search: PropTypes.string.isRequired,
   handleSearchQuery: PropTypes.func.isRequired,
+  handleDateChange: PropTypes.func.isRequired,
+  selectedDate: PropTypes.string.isRequired,
 };
 
 export default NavBar;

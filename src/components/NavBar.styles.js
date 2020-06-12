@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   searchWrap: {
-    marginLeft: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    flexGrow: 1,
   },
   search: {
     position: 'relative',
@@ -61,6 +63,21 @@ const useStyles = makeStyles(theme => ({
   link: {
     color: '#eee',
     textDecoration: 'none',
+  },
+  sechdule: {
+    marginLeft: 'auto',
+  },
+  date: {
+    width: '140px',
+    ' & .MuiIconButton-label': {
+      color: '#eee',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottom: '1px solid rgba(255, 255, 255, 1)',
+    },
+    '& > *': {
+      color: '#eee',
+    },
   },
 }));
 

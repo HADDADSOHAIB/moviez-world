@@ -7,6 +7,13 @@ import NavBar from './NavBar';
 
 const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
   const [search, setSearchLocally] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+    console.log(date);
+  };
+
   const handleSearchChange = e => setSearchLocally(e.target.value);
   const handleSearchQuery = e => {
     if (e.keyCode === 13) {
@@ -21,6 +28,8 @@ const NavBarContainer = ({ setSearchInStore, fetchShows }) => {
       handleSearchChange={handleSearchChange}
       search={search}
       handleSearchQuery={handleSearchQuery}
+      handleDateChange={handleDateChange}
+      selectedDate={selectedDate}
     />
   );
 };
