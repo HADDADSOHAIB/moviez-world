@@ -25,11 +25,18 @@ const successFetchingShows = shows => ({
   },
 });
 
-const fetchShows = apiIndex => dispatch => {
-  dispatch(startFetchingShows());
+const fetchSearchShows = (dispatch, search) => {
+  axios
+    .get(`http://api.tvmaze.com/search/shows?q=${search}`)
+    .then(res => dispatch(successFetchingShows(res.data.map(el => el.show))))
+    .catch(err => dispatch(errorFetchingShows(err)));
+};
+
+const fetchSchduleShows = () => {};
+
+const fetchAllShows = (dispatch, apiIndex) => {
   const apiRequests = [];
-  console.log('api index:');
-  console.dir(apiIndex);
+
   for (let i = 1; i <= apiIndex; i += 1) {
     apiRequests.push(axios.get(`http://api.tvmaze.com/shows?page=${i}`));
   }
@@ -39,6 +46,18 @@ const fetchShows = apiIndex => dispatch => {
       dispatch(successFetchingShows(shows));
     })
     .catch(err => dispatch(errorFetchingShows(err)));
+};
+
+const fetchShows = (apiIndex, options) => dispatch => {
+  const { search, sechdule } = options;
+  dispatch(startFetchingShows());
+  if (search) {
+    fetchSearchShows(dispatch, search);
+  } else if (sechdule) {
+    fetchSchduleShows();
+  } else {
+    fetchAllShows(dispatch, apiIndex);
+  }
 };
 
 const selectPage = page => ({

@@ -12,9 +12,11 @@ const AllShowPage = ({
   handlePageChange,
   handleLoadMoreShows,
   currentPage,
+  search,
+  sechdule,
 }) => {
   const classes = useStyles();
-  const showMoreButton = currentPage === pageCount;
+  const showMoreButton = currentPage === pageCount && !search && !sechdule;
 
   return (
     <div className={classes.root}>
@@ -44,12 +46,16 @@ AllShowPage.propTypes = {
   handlePageChange: PropTypes.func.isRequired,
   handleLoadMoreShows: PropTypes.func.isRequired,
   currentPage: PropTypes.number,
+  search: PropTypes.string,
+  sechdule: PropTypes.objectOf(Object),
 };
 
 AllShowPage.defaultProps = {
   showsDisplayed: [],
   pageCount: 0,
   currentPage: 1,
+  search: '',
+  sechdule: {},
 };
 
 export default AllShowPage;

@@ -12,12 +12,14 @@ const AllShowPageContainer = ({
   shows,
   selectPage,
   currentPage,
+  sechdule,
+  search,
 }) => {
   const [pageCount, setPageCount] = useState(0);
   const firstShowIndex = (currentPage - 1) * 10;
   const lastShowIndex = firstShowIndex + 10;
 
-  useEffect(() => fetchShows(apiIndex), []);
+  useEffect(() => fetchShows(apiIndex, { search, sechdule }), []);
   useEffect(() => setPageCount(Math.floor(shows.length / 10)), [shows]);
 
   const handlePageChange = (event, value) => selectPage(value);
@@ -33,6 +35,8 @@ const AllShowPageContainer = ({
       showsDisplayed={shows.slice(firstShowIndex, lastShowIndex)}
       currentPage={currentPage}
       handleLoadMoreShows={handleLoadMoreShows}
+      search={search}
+      sechdule={sechdule}
     />
   );
 };
@@ -44,16 +48,25 @@ AllShowPageContainer.propTypes = {
   shows: PropTypes.arrayOf(Object).isRequired,
   selectPage: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
+  search: PropTypes.string,
+  sechdule: PropTypes.objectOf(Object),
+};
+
+AllShowPageContainer.defaultProps = {
+  search: '',
+  sechdule: {},
 };
 
 const mapStateToProps = state => ({
   apiIndex: state.show.apiIndex,
   shows: state.show.showsList,
   currentPage: state.show.currentPage,
+  search: state.filter.search,
+  sechdule: state.filter.sechdule,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchShows: apiIndex => dispatch(fetchShows(apiIndex)),
+  fetchShows: (apiIndex, options) => dispatch(fetchShows(apiIndex, options)),
   selectPage: page => dispatch(selectPage(page)),
   increaseApiIndex: () => dispatch(increaseApiIndex()),
 });
