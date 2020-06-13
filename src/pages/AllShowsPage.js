@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import useStyles from './AllShowsPage.styles';
 import ShowCard from '../components/showCard';
 import CurrentFilter from '../components/currentFilter';
+import Footer from '../components/Footer';
 
 // prettier-ignore
 const AllShowPage = ({
