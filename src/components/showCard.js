@@ -16,8 +16,8 @@ const ShowCard = ({ show, history }) => {
   const handleClick = () => history.push(`/${show.id}`);
 
   return (
-    <Card className={classes.root} onClick={handleClick}>
-      <CardActionArea>
+    <Card className={classes.root}>
+      <CardActionArea onClick={handleClick}>
         <CardMedia className={classes.media} image={image} title="Show" />
         <CardContent>
           <Typography gutterBottom align="center" variant="h5" component="h2">

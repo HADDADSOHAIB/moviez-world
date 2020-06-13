@@ -79,7 +79,6 @@ const Filter = ({
               >
                 <MenuItem value="US">US</MenuItem>
                 <MenuItem value="GB">UK</MenuItem>
-                <MenuItem value="FR">France</MenuItem>
               </Select>
             </FormControl>
           </div>

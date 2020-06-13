@@ -1,17 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
+    flexDirection: 'column',
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+    },
   },
   imageCard: {
-    width: '50%',
+    width: '95%',
     margin: '10px',
-  },
-  detailsCard: {
-    width: '50%',
-    margin: '10px',
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+    },
   },
   genre: {
     marginTop: '10px',
@@ -35,4 +38,4 @@ export default makeStyles({
       marginRight: '10px',
     },
   },
-});
+}));

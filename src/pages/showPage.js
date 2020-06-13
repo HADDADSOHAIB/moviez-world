@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -73,7 +73,17 @@ const ShowPage = ({ show }) => {
 };
 
 ShowPage.propTypes = {
-  show: PropTypes.objectOf(object).isRequired,
+  show: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    officialSite: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+      medium: PropTypes.string,
+    }),
+    name: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    language: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ShowPage;

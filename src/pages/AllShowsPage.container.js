@@ -19,8 +19,15 @@ const AllShowPageContainer = ({
   const firstShowIndex = (currentPage - 1) * 10;
   const lastShowIndex = firstShowIndex + 10;
 
-  useEffect(() => fetchShows(apiIndex, { search, sechdule }), []);
-  useEffect(() => setPageCount(Math.floor(shows.length / 10)), [shows]);
+  useEffect(() => {
+    fetchShows(apiIndex, { search, sechdule });
+    return () => '';
+  }, []);
+
+  useEffect(() => {
+    setPageCount(Math.floor(shows.length / 10));
+    return () => '';
+  }, [shows]);
 
   const handlePageChange = (event, value) => selectPage(value);
   const handleLoadMoreShows = () => {
