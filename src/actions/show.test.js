@@ -1,5 +1,48 @@
+// import configureMockStore from 'redux-mock-store';
+import expect from 'expect';
+// import thunk from 'redux-thunk';
+// import moxios from 'moxios';
+// import getPostsMock from '../../mocks/getPostsMock';
+
 import * as actions from './show.creators';
 import * as types from './show.types';
+
+// const middlewares = [thunk];
+// const mockStore = configureMockStore(middlewares);
+
+// describe('getPosts actions', () => {
+//   beforeEach(() => {
+//     moxios.install();
+//   });
+
+//   afterEach(() => {
+//     moxios.uninstall();
+//   });
+
+//   it('creates GET_POSTS_SUCCESS after successfuly fetching postse', () => {
+//     moxios.wait(() => {
+//       const request = moxios.requests.mostRecent();
+//       request.respondWith({
+//         status: 200,
+//         response: {
+//           data: ['show1', 'show2'],
+//         },
+//       });
+//     });
+
+//     const expectedActions = [
+//       { type: types.START_FETCHING_SHOWS },
+//       { type: types.SUCCESS_FETCHING_SHOWS, payload: { shows: ['show1', 'show2'] } },
+//     ];
+
+//     const store = mockStore({ show: { showsList: [] } });
+
+//     return store.dispatch(actions.fetchShows(1, { search: 'test', sechdule: {} })).then(() => {
+//       // return of async actions
+//       expect(store.getActions()).toEqual(expectedActions);
+//     });
+//   });
+// });
 
 describe('show creators', () => {
   it('select page should call SELECT PAGE with the correct number', () => {

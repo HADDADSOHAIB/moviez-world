@@ -26,14 +26,13 @@ const successFetchingShows = shows => ({
   },
 });
 
-const fetchSearchShows = (dispatch, search) => {
+const fetchSearchShows = (dispatch, search) =>
   axios
     .get(`http://api.tvmaze.com/search/shows?q=${search}`)
     .then(res => dispatch(successFetchingShows(res.data.map(el => el.show))))
     .catch(err => dispatch(errorFetchingShows(err)));
-};
 
-const fetchSchduleShows = (dispatch, sechdule) => {
+const fetchSchduleShows = (dispatch, sechdule) =>
   axios
     .get(
       ` http://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
@@ -42,7 +41,6 @@ const fetchSchduleShows = (dispatch, sechdule) => {
     )
     .then(res => dispatch(successFetchingShows(onlyUniques(res.data.map(el => el.show)))))
     .catch(err => dispatch(errorFetchingShows(err)));
-};
 
 const fetchAllShows = (dispatch, apiIndex) => {
   const apiRequests = [];
@@ -50,7 +48,7 @@ const fetchAllShows = (dispatch, apiIndex) => {
   for (let i = 1; i <= apiIndex; i += 1) {
     apiRequests.push(axios.get(`http://api.tvmaze.com/shows?page=${i}`));
   }
-  Promise.all([...apiRequests])
+  return Promise.all([...apiRequests])
     .then(values => {
       const shows = values.reduce((memo, item) => memo.concat(item.data), []);
       dispatch(successFetchingShows(shows));
@@ -62,12 +60,12 @@ const fetchShows = (apiIndex, options) => dispatch => {
   const { search, sechdule } = options;
   dispatch(startFetchingShows());
   if (search) {
-    fetchSearchShows(dispatch, search);
-  } else if (sechdule) {
-    fetchSchduleShows(dispatch, sechdule);
-  } else {
-    fetchAllShows(dispatch, apiIndex);
+    return fetchSearchShows(dispatch, search);
   }
+  if (sechdule) {
+    return fetchSchduleShows(dispatch, sechdule);
+  }
+  return fetchAllShows(dispatch, apiIndex);
 };
 
 const selectPage = page => ({
