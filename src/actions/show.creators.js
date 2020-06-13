@@ -86,4 +86,7 @@ export {
   fetchShows,
   selectPage,
   increaseApiIndex,
+  startFetchingShows,
+  errorFetchingShows,
+  successFetchingShows,
 };
