@@ -20,13 +20,18 @@ const FilterContainer = ({
   const handleCountryChange = event => setCountry(event.target.value);
   const handleDateChange = date => setSelectedDate(date);
   const handleSearchChange = e => setSearchLocally(e.target.value);
+
+  const handleSearchClick = () => {
+    clearFilter();
+    setSearchInStore(search);
+    selectPage(1);
+    fetchShows({ search });
+    setSearchLocally('');
+  };
+
   const handleSearchQuery = e => {
     if (e.keyCode === 13) {
-      clearFilter();
-      setSearchInStore(search);
-      selectPage(1);
-      fetchShows({ search });
-      setSearchLocally('');
+      handleSearchClick();
     }
   };
 
@@ -48,6 +53,7 @@ const FilterContainer = ({
       handleCountryChange={handleCountryChange}
       selectedCountry={selectedCountry}
       handleSearchSechdule={handleSearchSechdule}
+      handleSearchClick={handleSearchClick}
     />
   );
 };

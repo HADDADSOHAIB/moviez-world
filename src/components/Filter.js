@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Tooltip from '@material-ui/core/Tooltip';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import 'date-fns';
@@ -27,6 +25,7 @@ const Filter = ({
   handleCountryChange,
   selectedCountry,
   handleSearchSechdule,
+  handleSearchClick,
 }) => {
   const classes = useStyles();
   return (
@@ -35,9 +34,9 @@ const Filter = ({
         <CurrentFilter />
         <div className={classes.searchWrap}>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
+            <Tooltip title="Search by name" placement="bottom">
+              <Button variant="contained" color="primary" onClick={handleSearchClick}>Search</Button>
+            </Tooltip>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -99,6 +98,7 @@ Filter.propTypes = {
   handleCountryChange: PropTypes.func.isRequired,
   selectedCountry: PropTypes.string.isRequired,
   handleSearchSechdule: PropTypes.func.isRequired,
+  handleSearchClick: PropTypes.func.isRequired,
 };
 
 export default Filter;
