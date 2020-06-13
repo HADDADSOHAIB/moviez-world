@@ -10,6 +10,9 @@ const useStyles = makeStyles(() => ({
       marginLeft: '5px',
     },
   },
+  center: {
+    textAlign: 'center',
+  },
 }));
 
 export default useStyles;

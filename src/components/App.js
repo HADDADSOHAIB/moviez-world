@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AllShowsPageContainer from '../pages/AllShowsPage.container';
-import NavBarContainer from './NavBar.container';
+import NavBar from './NavBar';
 import ShowPageContainer from '../pages/showPage.container';
 import Footer from './Footer';
 import useStyles from './App.styles';
@@ -12,7 +12,7 @@ function App() {
     <div className={classes.root}>
       <div>
         <Router>
-          <NavBarContainer />
+          <NavBar />
           <Route exact path="/">
             <AllShowsPageContainer />
           </Route>

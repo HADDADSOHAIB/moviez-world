@@ -2,21 +2,9 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(0),
-    display: 'block',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  title: {
-    marginRight: theme.spacing(3),
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+    display: 'center',
+    justifyContent: 'center',
+    margin: '0 20px 20px',
   },
   searchWrap: {
     display: 'flex',
@@ -54,15 +42,8 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '40ch',
-      },
+      width: '30ch',
     },
-  },
-  link: {
-    color: '#eee',
-    textDecoration: 'none',
   },
   sechdule: {
     marginLeft: 'auto',
@@ -71,13 +52,13 @@ const useStyles = makeStyles(theme => ({
   date: {
     width: '140px',
     ' & .MuiIconButton-label': {
-      color: '#eee',
+      color: '#111',
     },
     '& .MuiInput-underline:before': {
-      borderBottom: '1px solid rgba(255, 255, 255, 1)',
+      borderBottom: '1px solid rgba(0, 0, 0, 1)',
     },
     '& > *': {
-      color: '#eee',
+      color: '#111',
     },
   },
   country: {
@@ -86,13 +67,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     '& .MuiSelect-select.MuiSelect-select': {
-      color: '#eee',
+      color: '#111',
     },
     '& .MuiSelect-icon': {
-      color: 'rgba(255, 255, 255, 1)',
+      color: 'rgba(0, 0, 0, 1)',
     },
     '& .MuiInput-underline:before': {
-      borderBottom: '1px solid rgba(255, 255, 255, 1)',
+      borderBottom: '1px solid rgba(0, 0, 0, 1)',
     },
   },
   airedSearch: {

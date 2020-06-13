@@ -9,11 +9,13 @@ import Select from '@material-ui/core/Select';
 import Tooltip from '@material-ui/core/Tooltip';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import useStyles from './Filter.styles';
+import CurrentFilter from './currentFilter';
 
 // prettier-ignore
 const Filter = ({
@@ -28,8 +30,9 @@ const Filter = ({
 }) => {
   const classes = useStyles();
   return (
-    <CardActionArea>
+    <Card className={classes.root}>
       <CardContent>
+        <CurrentFilter />
         <div className={classes.searchWrap}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -83,7 +86,7 @@ const Filter = ({
           </div>
         </div>
       </CardContent>
-    </CardActionArea>
+    </Card>
   );
 };
 

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     margin: '20px',
-    minWidth: '90vh',
+    minHeight: '90vh',
   },
   shows: {
     display: 'flex',
@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       marginTop: theme.spacing(2),
     },
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  filter: {
     display: 'flex',
     justifyContent: 'center',
   },

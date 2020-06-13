@@ -4,8 +4,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import Button from '@material-ui/core/Button';
 import useStyles from './AllShowsPage.styles';
 import ShowCard from '../components/showCard';
-import CurrentFilter from '../components/currentFilter';
-import Footer from '../components/Footer';
+import Filter from '../components/Filter.container';
 
 // prettier-ignore
 const AllShowPage = ({
@@ -22,7 +21,9 @@ const AllShowPage = ({
 
   return (
     <div className={classes.root}>
-      <CurrentFilter />
+      <div className={classes.filter}>
+        <Filter />
+      </div>
       <div className={classes.shows}>
         {showsDisplayed.map(show => (
           <ShowCard show={show} key={show.id} />
