@@ -1,7 +1,31 @@
+import axios from 'axios';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
 import * as actions from './show.creators';
 import * as types from './show.types';
 
+jest.mock('axios');
+axios.get.mockResolvedValue({
+  data: ['show1', 'show2', 'show3'],
+});
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+
 describe('show creators', () => {
+  it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
+    const expectedActions = [
+      { type: types.START_FETCHING_SHOWS },
+      { type: types.SUCCESS_FETCHING_SHOWS, payload: { shows: ['show1', 'show2', 'show3'] } },
+    ];
+    const store = mockStore({ showsList: [] });
+
+    return store.dispatch(actions.fetchShows(1, {})).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
   it('select page should call SELECT PAGE with the correct number', () => {
     const page = 3;
     const expectedAction = {
