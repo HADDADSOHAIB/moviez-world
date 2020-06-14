@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Pagination from '@material-ui/lab/Pagination';
 import Button from '@material-ui/core/Button';
 import useStyles from './AllShowsPage.styles';
-import ShowCard from '../components/showCard';
+import ShowCard from '../components/ShowCard';
 import Filter from '../components/Filter.container';
 
 // prettier-ignore

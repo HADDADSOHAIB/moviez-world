@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import useStyles from './Filter.styles';
-import CurrentFilter from './currentFilter';
+import CurrentFilter from './CurrentFilter';
 
 // prettier-ignore
 const Filter = ({
