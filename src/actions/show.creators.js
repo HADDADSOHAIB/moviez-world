@@ -26,21 +26,21 @@ const successFetchingShows = shows => ({
   },
 });
 
-const fetchSearchShows = (dispatch, search) =>
-  axios
-    .get(`https://api.tvmaze.com/search/shows?q=${search}`)
-    .then(res => dispatch(successFetchingShows(res.data.map(el => el.show))))
-    .catch(err => dispatch(errorFetchingShows(err)));
+// prettier-ignore
+const fetchSearchShows = (dispatch, search) => axios
+  .get(`https://api.tvmaze.com/search/shows?q=${search}`)
+  .then(res => dispatch(successFetchingShows(res.data.map(el => el.show))))
+  .catch(err => dispatch(errorFetchingShows(err)));
 
-const fetchSchduleShows = (dispatch, sechdule) =>
-  axios
-    .get(
-      ` https://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
-        sechdule.date.toISOString().split('T')[0]
-      }`,
-    )
-    .then(res => dispatch(successFetchingShows(onlyUniques(res.data.map(el => el.show)))))
-    .catch(err => dispatch(errorFetchingShows(err)));
+// prettier-ignore
+const fetchSchduleShows = (dispatch, sechdule) => axios
+  .get(
+    ` https://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
+      sechdule.date.toISOString().split('T')[0]
+    }`,
+  )
+  .then(res => dispatch(successFetchingShows(onlyUniques(res.data.map(el => el.show)))))
+  .catch(err => dispatch(errorFetchingShows(err)));
 
 const fetchAllShows = (dispatch, apiIndex) => {
   const apiRequests = [];
