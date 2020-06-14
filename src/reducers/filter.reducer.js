@@ -32,4 +32,5 @@ const showReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
+export { INITIAL_STATE };
 export default showReducer;

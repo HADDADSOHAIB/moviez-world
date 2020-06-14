@@ -38,6 +38,7 @@ const showReducer = (state = INITIAL_STATE, action) => {
           ...state.errors,
           loadingShowsError: payload.error,
         },
+        dataLoading: false,
       };
     case SELECT_PAGE:
       if (payload.page <= Math.floor(state.showsList.length / 10) && payload.page >= 1) {
@@ -62,4 +63,5 @@ const showReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
+export { INITIAL_STATE };
 export default showReducer;
