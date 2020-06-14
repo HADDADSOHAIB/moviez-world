@@ -21,7 +21,7 @@ const ShowPageContainer = ({ match }) => {
 
   useEffect(() => {
     axios
-      .get(`http://api.tvmaze.com/shows/${match.params.id}`)
+      .get(`https://api.tvmaze.com/shows/${match.params.id}`)
       .then(res => setShow(res.data))
       .catch(() => setNotFound(true));
     return () => '';

@@ -28,14 +28,14 @@ const successFetchingShows = shows => ({
 
 const fetchSearchShows = (dispatch, search) =>
   axios
-    .get(`http://api.tvmaze.com/search/shows?q=${search}`)
+    .get(`https://api.tvmaze.com/search/shows?q=${search}`)
     .then(res => dispatch(successFetchingShows(res.data.map(el => el.show))))
     .catch(err => dispatch(errorFetchingShows(err)));
 
 const fetchSchduleShows = (dispatch, sechdule) =>
   axios
     .get(
-      ` http://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
+      ` https://api.tvmaze.com/schedule?country=${sechdule.country}&date=${
         sechdule.date.toISOString().split('T')[0]
       }`,
     )
@@ -46,7 +46,7 @@ const fetchAllShows = (dispatch, apiIndex) => {
   const apiRequests = [];
 
   for (let i = 1; i <= apiIndex; i += 1) {
-    apiRequests.push(axios.get(`http://api.tvmaze.com/shows?page=${i}`));
+    apiRequests.push(axios.get(`https://api.tvmaze.com/shows?page=${i}`));
   }
   return Promise.all([...apiRequests])
     .then(values => {
