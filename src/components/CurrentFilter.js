@@ -3,7 +3,7 @@ import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { clearFilter } from '../actions/filter.creators';
-import useStyles from './currentFilter.styles';
+import useStyles from './CurrentFilter.styles';
 import { fetchShows } from '../actions/show.creators';
 
 // prettier-ignore

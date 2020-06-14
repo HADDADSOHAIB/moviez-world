@@ -6,7 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import useStyles from './showCard.styles';
+import useStyles from './ShowCard.styles';
 import textCleanr from '../utils/textCleaner';
 import textPreview from '../utils/textPreview';
 
