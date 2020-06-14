@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchShows, selectPage, increaseApiIndex } from '../actions/show.creators';
 import AllShowsPage from './AllShowsPage';
+import Loader from '../components/Loader';
+
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+}));
 
 // prettier-ignore
 const AllShowPageContainer = ({
@@ -14,10 +23,35 @@ const AllShowPageContainer = ({
   currentPage,
   sechdule,
   search,
+  error,
+  dataLoading,
 }) => {
+  const classes = useStyles();
+
   const [pageCount, setPageCount] = useState(0);
-  const firstShowIndex = (currentPage - 1) * 10;
-  const lastShowIndex = firstShowIndex + 10;
+  const [firstShowIndex, setFirstShowIndex] = useState(0);
+  const [lastShowIndex, setLastShowIndex] = useState(0);
+  const [NoShows, setNoShows] = useState((<div>No Shows</div>));
+  const [showsExist, setShowsExist] = useState((false));
+
+  useEffect(() => {
+    if (dataLoading) {
+      setNoShows(<Loader />);
+      setShowsExist(false);
+    } else if (error) {
+      setNoShows(<div className={classes.root}> Error while loading, try later</div>);
+      setShowsExist(false);
+    } else {
+      setShowsExist(true);
+    }
+    return () => '';
+  }, [error, dataLoading]);
+
+  useEffect(() => {
+    setFirstShowIndex((currentPage - 1) * 10);
+    setLastShowIndex(currentPage * 10);
+    return () => '';
+  }, [shows, currentPage]);
 
   useEffect(() => {
     fetchShows(apiIndex, { search, sechdule });
@@ -36,15 +70,21 @@ const AllShowPageContainer = ({
   };
 
   return (
-    <AllShowsPage
-      pageCount={pageCount}
-      handlePageChange={handlePageChange}
-      showsDisplayed={shows.slice(firstShowIndex, lastShowIndex)}
-      currentPage={currentPage}
-      handleLoadMoreShows={handleLoadMoreShows}
-      search={search}
-      sechdule={sechdule}
-    />
+    <div>
+      {
+        !showsExist ? NoShows : (
+          <AllShowsPage
+            pageCount={pageCount}
+            handlePageChange={handlePageChange}
+            showsDisplayed={shows.slice(firstShowIndex, lastShowIndex)}
+            currentPage={currentPage}
+            handleLoadMoreShows={handleLoadMoreShows}
+            search={search}
+            sechdule={sechdule}
+          />
+        )
+      }
+    </div>
   );
 };
 
@@ -57,11 +97,14 @@ AllShowPageContainer.propTypes = {
   currentPage: PropTypes.number.isRequired,
   search: PropTypes.string,
   sechdule: PropTypes.objectOf(Object),
+  dataLoading: PropTypes.bool.isRequired,
+  error: PropTypes.shape({}),
 };
 
 AllShowPageContainer.defaultProps = {
   search: '',
   sechdule: {},
+  error: {},
 };
 
 const mapStateToProps = state => ({
@@ -70,6 +113,8 @@ const mapStateToProps = state => ({
   currentPage: state.show.currentPage,
   search: state.filter.search,
   sechdule: state.filter.sechdule,
+  dataLoading: state.show.dataLoading,
+  error: state.show.errors.loadingShowsError,
 });
 
 const mapDispatchToProps = dispatch => ({
