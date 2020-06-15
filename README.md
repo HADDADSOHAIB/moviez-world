@@ -2,6 +2,10 @@
 
 This project is a shows listing platform, you can search a show by two criteria: keyword and air date and country. It is build using react, redux, react hooks and Material UI for styling.
 
+### Video presentation:
+
+[![Video](/public/img/6.png)](https://www.loom.com/share/61a88d40464d4d1ebcb08e94358ae5d7)
+
 ### Live demo:
 
 [heroku live site](https://moviez-world.herokuapp.com/)
