@@ -24,7 +24,7 @@ const ShowCard = ({ show, history }) => {
             {show.name}
           </Typography>
           <Typography variant="body2" align="justify" color="textSecondary" component="p">
-            {textPreview(textCleanr(show.summary), 70)}
+            {textPreview(textCleanr(show.summary || ''), 70)}
           </Typography>
         </CardContent>
       </CardActionArea>
