@@ -1,4 +1,4 @@
-import reducer, { INITIAL_STATE } from './show.reducer';
+import reducer, { INITIAL_STATE } from '../reducers/show.reducer';
 import * as types from '../actions/show.types';
 
 describe('show reducer', () => {
