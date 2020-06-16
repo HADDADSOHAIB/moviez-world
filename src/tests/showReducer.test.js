@@ -1,5 +1,5 @@
 import reducer, { INITIAL_STATE } from '../reducers/show.reducer';
-import * as types from '../actions/show.types';
+import * as types from '../actions/showTypes';
 
 describe('show reducer', () => {
   const state = {

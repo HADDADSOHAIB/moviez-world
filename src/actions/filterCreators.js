@@ -1,4 +1,4 @@
-import { SET_SECHDULE, CLEAR_FILTER, SET_SEARCH } from './filter.types';
+import { SET_SECHDULE, CLEAR_FILTER, SET_SEARCH } from './filterTypes';
 
 const clearFilter = () => ({
   type: CLEAR_FILTER,

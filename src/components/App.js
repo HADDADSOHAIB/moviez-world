@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AllShowsPageContainer from '../pages/AllShowsPage.container';
+import AllShowsPageContainer from '../pages/AllShowsPageContainer';
 import NavBar from './NavBar';
-import ShowPageContainer from '../pages/showPage.container';
+import ShowPageContainer from '../pages/showPageContainer';
 import Footer from './Footer';
-import useStyles from './App.styles';
+import useStyles from './AppStyles';
 
 function App() {
   const classes = useStyles();

@@ -5,7 +5,7 @@ import {
   ERROR_FETCHING_SHOWS,
   SELECT_PAGE,
   INCREASE_API_INDEX,
-} from './show.types';
+} from './showTypes';
 import onlyUniques from '../utils/onlyUniques';
 
 const startFetchingShows = () => ({

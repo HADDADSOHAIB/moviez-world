@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchShows, selectPage } from '../actions/show.creators';
-import { setSearch, clearFilter, setSechdule } from '../actions/filter.creators';
+import { fetchShows, selectPage } from '../actions/showCreators';
+import { setSearch, clearFilter, setSechdule } from '../actions/filterCreators';
 import Filter from './Filter';
 
 // prettier-ignore

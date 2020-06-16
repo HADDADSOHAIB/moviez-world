@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import useStyles from './Footer.styles';
+import useStyles from './FooterStyles';
 
 // prettier-ignore
 const Footer = () => {

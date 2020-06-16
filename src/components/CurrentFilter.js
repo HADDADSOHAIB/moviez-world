@@ -2,9 +2,9 @@ import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clearFilter } from '../actions/filter.creators';
-import useStyles from './CurrentFilter.styles';
-import { fetchShows } from '../actions/show.creators';
+import { clearFilter } from '../actions/filterCreators';
+import useStyles from './CurrentFilterStyles';
+import { fetchShows } from '../actions/showCreators';
 
 // prettier-ignore
 const CurrentFilter = ({

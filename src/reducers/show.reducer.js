@@ -4,7 +4,7 @@ import {
   ERROR_FETCHING_SHOWS,
   SELECT_PAGE,
   INCREASE_API_INDEX,
-} from '../actions/show.types';
+} from '../actions/showTypes';
 
 const INITIAL_STATE = {
   showsList: [],

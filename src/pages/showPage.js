@@ -6,8 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
-import useStyles from './showPage.styles';
 import textCleaner from '../utils/textCleaner';
+import useStyles from './showPageStyles';
 
 const ShowPage = ({ show }) => {
   const classes = useStyles();

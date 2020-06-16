@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchShows, selectPage, increaseApiIndex } from '../actions/show.creators';
+import { fetchShows, selectPage, increaseApiIndex } from '../actions/showCreators';
 import AllShowsPage from './AllShowsPage';
 import Loader from '../components/Loader';
 

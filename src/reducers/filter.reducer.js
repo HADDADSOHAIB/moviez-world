@@ -1,4 +1,4 @@
-import { CLEAR_FILTER, SET_SEARCH, SET_SECHDULE } from '../actions/filter.types';
+import { CLEAR_FILTER, SET_SEARCH, SET_SECHDULE } from '../actions/filterTypes';
 
 const INITIAL_STATE = {
   search: null,

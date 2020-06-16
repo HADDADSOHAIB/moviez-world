@@ -2,8 +2,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import * as actions from '../actions/show.creators';
-import * as types from '../actions/show.types';
+import * as actions from '../actions/showCreators';
+import * as types from '../actions/showTypes';
 
 jest.mock('axios');
 axios.get.mockResolvedValue({

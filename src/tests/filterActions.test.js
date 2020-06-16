@@ -1,5 +1,5 @@
-import * as actions from '../actions/filter.creators';
-import * as types from '../actions/filter.types';
+import * as actions from '../actions/filterCreators';
+import * as types from '../actions/filterTypes';
 
 describe('show creators', () => {
   it('clearFilter should call CLEAR_FILTER', () => {
