@@ -25,12 +25,12 @@ const ShowPageContainer = ({ match }) => {
       .then(res => setShow(res.data))
       .catch(() => setNotFound(true));
     return () => '';
-  }, []);
+  }, [match.params.id]);
 
   useEffect(() => {
     setLoading(notFound ? <div className={classes.root}>Show not found</div> : <Loader />);
     return () => '';
-  }, [show, notFound]);
+  }, [show, notFound, classes.root]);
 
   return <div>{show ? <ShowPage show={show} /> : Loading}</div>;
 };

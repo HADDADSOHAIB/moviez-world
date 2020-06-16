@@ -45,7 +45,7 @@ const AllShowPageContainer = ({
       setShowsExist(true);
     }
     return () => '';
-  }, [error, dataLoading]);
+  }, [error, dataLoading, classes.root]);
 
   useEffect(() => {
     setFirstShowIndex((currentPage - 1) * 10);
@@ -56,7 +56,7 @@ const AllShowPageContainer = ({
   useEffect(() => {
     fetchShows(apiIndex, { search, sechdule });
     return () => '';
-  }, []);
+  }, [fetchShows, apiIndex, search, sechdule]);
 
   useEffect(() => {
     setPageCount(Math.floor(shows.length / 10));
